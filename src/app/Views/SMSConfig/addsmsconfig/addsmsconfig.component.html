@@ -1,0 +1,61 @@
+<div class="content-wrapper">
+    <div class="content-heading">Add New SMS Config</div>
+    <!-- <div class="alert alert-info">
+       <em class="fa fa-exclamation-circle fa-lg fa-fw"></em>
+       <span>There is an autosaved version of this article that is more recent than the version below. <a class="text-white" href="#">Restore</a>
+       </span>
+    </div> -->
+    <div class="row">
+       <!-- Article Content-->
+       <div class="col-lg-9">
+          <div class="panel panel-default">
+             <div class="panel-body">
+                <form [formGroup]="eform" (ngSubmit)="addemailconfig()">
+                   <input class="mb-lg form-control input-lg" formControlName="name" type="text" name="sms name" placeholder="sms name...">
+                   <p>
+                    <span class="text-danger"  *ngIf="!eform.get('name').value && formSubmitted">
+                        name required.
+                    </span>                         
+                  
+                  </p> 
+                   <input class="mb-lg form-control input-lg" formControlName="code" type="text" name="sms code" placeholder="sms code...">
+                   <p>
+                    <span class="text-danger"  *ngIf="!eform.get('code').value && formSubmitted">
+                       code required.
+                    </span>                         
+                  
+                  </p> 
+                   <input class="mb-lg form-control input-lg" formControlName="subject" type="text" name="sms subject" placeholder="sms subject...">
+                   <!-- Wysiswyg tooblbar-->
+                   <p>
+                    <span class="text-danger"  *ngIf="!eform.get('subject').value && formSubmitted">
+                       subject required.
+                    </span>                         
+                  
+                  </p> 
+                   <angular-editor  [config]="config" formControlName="body"></angular-editor>
+                   <p>
+                    <span class="text-danger"  *ngIf="!eform.get('body').value && formSubmitted">
+                       body required.
+                    </span>                         
+                  
+                  </p> 
+                   <div class="clearfix">
+                      <div class="pull-left">
+                        
+                         <button class="btn btn-primary m-t-10" type="submit">
+                            <em class="fa fa-check fa-fw"></em>Save</button>
+                      </div>
+                      <div class="pull-right">
+                         <a routerLink="/smsconfig/smsconfiglist" class="btn btn-danger m-r-10 m-t-10" type="button">
+                            <em class="fa fa-trash fa-fw"></em>Back</a>
+                      </div>
+                   </div>
+                </form>
+             </div>
+          </div>
+         
+       </div>
+    
+    </div>
+ </div>

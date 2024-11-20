@@ -1,0 +1,73 @@
+
+
+<div class="wrapper">
+    <div class="block-center mt-xl wd-xl">
+       <!-- START panel-->
+       <div class="panel panel-dark panel-flat">
+          <div class="panel-heading text-center">
+             <a href="#">
+                <img class="block-center img-rounded" width="250px" height="100px" src="../../../assets/img/pavaklogo.png" alt="Image">
+             </a>
+          </div>
+          <div class="panel-body">
+             <p class="text-center pv">SIGN IN TO CONTINUE.</p>
+             <form class="mb-lg" [formGroup]="loginform" (ngSubmit)="login()">
+                <div class="form-group has-feedback">
+                   <input class="form-control" formControlName="userName"  placeholder="Enter email" >
+                   <span class="fa fa-envelope form-control-feedback text-muted"></span>
+                   <p>
+                     <span class="text-danger"  *ngIf="!loginform.get('userName')?.value && formSubmitted">
+                       Enter your email
+                     </span>
+                    
+                     <span class="text-danger"  *ngIf="loginform.get('userName')?.errors?.email">Email must be a valid email address</span>
+                   </p>
+                </div>
+              
+                <div class="form-group has-feedback">
+                   <input class="form-control" formControlName="password" type="password" placeholder="Password">
+                   <span class="fa fa-lock form-control-feedback text-muted"></span>
+                   <p>
+                     <span class="text-danger"  *ngIf="!loginform.get('password')?.value && formSubmitted">
+                       Enter your password
+                     </span>
+                   </p>
+                </div>
+                <div class="clearfix">
+                   <div class="checkbox c-checkbox pull-left mt0">
+                      <label>
+                         <input type="checkbox" value="" name="remember">
+                         <span class="fa fa-check"></span>Remember Me</label>
+                   </div>
+                   <div class="pull-right"><a class="text-muted">Forgot your password?</a>
+                   </div>
+                </div>
+                <button class="btn btn-block btn-primary mt-lg" type="submit">Login</button>
+             </form>
+             <!-- <p class="pt-lg text-center">Need to Signup?</p><a class="btn btn-block btn-default" href="register.html">Register Now</a> -->
+          </div>
+       </div>
+       <!-- END panel-->
+       <div class="p-lg text-center">
+          <span>&copy;</span>
+          <span>{{currantYear}}</span>
+          <span>-</span>
+          <span>Niyamit Admin</span>
+          <br>
+          <!-- <span>Enter Prize Admin</span> -->
+       </div>
+    </div>
+ </div>
+ <!-- =============== VENDOR SCRIPTS ===============-->
+ <!-- MODERNIZR-->
+ <script src="assets/vendor/modernizr/modernizr.custom.js"></script>
+ <!-- JQUERY-->
+ <script src="assets/vendor/jquery/dist/jquery.js"></script>
+ <!-- BOOTSTRAP-->
+ <script src="assets/vendor/bootstrap/dist/js/bootstrap.js"></script>
+ <!-- STORAGE API-->
+ <script src="assets/vendor/jQuery-Storage-API/jquery.storageapi.js"></script>
+ <!-- PARSLEY-->
+ <script src="assets/vendor/parsleyjs/dist/parsley.min.js"></script>
+ <!-- =============== APP SCRIPTS ===============-->
+ <script src="../../../assets/js/app.js"></script>

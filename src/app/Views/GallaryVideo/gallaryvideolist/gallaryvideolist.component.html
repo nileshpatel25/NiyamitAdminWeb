@@ -1,0 +1,99 @@
+<div class="content-wrapper">
+   <h3>Add/Update Video Url</h3>
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-lg-12">
+            <form [formGroup]="cform" (ngSubmit)="addvideourl()" role="form">
+               <div class="panel panel-default">
+                  <div class="panel-body">
+                     <div class="col-sm-12">
+                        <div class="col-sm-4">
+                           <div class="form-group">
+                              <select class="form-control" formControlName="guidGallaryid">
+                                 <option value="">Select Gallary</option>
+                                 <option *ngFor="let b of gallarylst; let i=index;" value="{{b.guidGallaryId}}">
+                                    {{b.name}} </option>
+                              </select>
+                              <p>
+                                 <span class="text-danger" *ngIf="!cform.get('guidGallaryid')?.value && formSubmitted">
+                                    Gallary required.
+                                 </span>
+                              </p>
+                           </div>
+                        </div>
+                        <div class="col-sm-4">
+                           <div class="form-group" style="margin-left: 5px;">
+                              <label class="sr-only" for="input-email">Video Url</label>
+                              <input class="form-control" type="text" formControlName="videourl"
+                                 placeholder="ex.https://www.youtube.com/watch?v=h3BtudZehuo">
+                              <p>
+                                 <span class="text-danger" *ngIf="!cform.get('videourl')?.value && formSubmitted">
+                                    Url required.
+                                 </span>
+                              </p>
+                           </div>
+                        </div>
+                        <div class="col-sm-4">
+                           <div class="checkbox c-checkbox">
+                              <label>
+                                 <input type="checkbox" formControlName="isPrimery">
+                                 <span class="fa fa-check"></span>Is Primery</label>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="panel panel-default">
+                  <div class="panel-body">
+                     <button class="btn btn-primary" type="submit" style="width: 100px; margin-left: 40px;">Add</button>
+                     <button class="btn btn-danger m-r-10 m-t-10" type="reset"
+                        style="width: 100px; margin-left: 10px;">Reset</button>
+                  </div>
+               </div>
+            </form>
+            <div class="panel panel-default">
+               <div class="panel-body">
+                  <div class="table-responsive">
+                     <input type="text" class="form-control">
+                     <table class="table table-striped table-hover">
+                        <thead>
+                           <tr>
+                              <th>#</th>
+                              <th>Gallary Name</th>
+                              <th>Video Url</th>
+                              <th class="sort-alpha">Action</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr
+                              *ngFor="let c of videourllist | paginate: { itemsPerPage: 10, currentPage: p } ; let i=index;">
+                              <td>
+                                 {{i+1}}
+                              </td>
+                              <td>
+                                 {{c.gallaryname}}
+                              </td>
+                              <td>
+                                 {{c.videourl}}
+                              </td>
+                              <td>
+                                 <button class="btn btn-default btn-sm" (click)="edit(c.guidGallaryvideoid)"
+                                    style="margin-left: 5px;"><i class="icon-note"></i></button>
+                                 <button class="btn btn-default btn-sm" (click)="delete(c.guidGallaryvideoid)"
+                                    style="margin-left: 5px;"><i class="fa fa-trash text-danger"></i></button>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td colspan="6" style="text-align: right;">
+                                 <pagination-controls (pageChange)="p = $event"
+                                    class="float-right"></pagination-controls>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>

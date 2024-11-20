@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/ccc3f470-54f8-4868-bdd6-dd3004336ccb/resourceGroups/pavakenterprisest/providers/Microsoft.Web/sites/adminpavak",
+    "appService.deploySubpath": "dist"
+}

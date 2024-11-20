@@ -1,0 +1,152 @@
+<div class="content-wrapper">
+    <h3>Influencer List</h3>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <form [formGroup]="iform" (ngSubmit)="addinflencer()" role="form">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-sm-12">                               
+                                <div class="col-sm-4">
+                                    <div class="form-group" style="margin-left: 5px;">
+                                        <label class="sr-only">Discount Code</label>
+                                        <input class="form-control" type="text" formControlName="discountcode"
+                                            placeholder="Enter Discount Code">
+                                        <p>
+                                            <span class="text-danger" *ngIf="!iform.get('discountcode')?.value && formSubmitted">
+                                                Discount code required.
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group" style="margin-left: 5px;">
+                                        <label class="sr-only">Discount Type</label>
+                                        <input class="form-control" type="text" formControlName="discountType"
+                                            placeholder="Enter Discount Type">
+                                        <p>
+                                            <span class="text-danger" *ngIf="!iform.get('discountType')?.value && formSubmitted">
+                                                Discount Type required.
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group" style="margin-left: 5px;">
+                                        <label class="sr-only">Discount Type</label>
+                                        <input class="form-control" type="text" formControlName="discount"
+                                            placeholder="Enter Discount ">
+                                        <p>
+                                            <span class="text-danger" *ngIf="!iform.get('discount')?.value && formSubmitted">
+                                                Discount required.
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">                               
+                                <div class="col-sm-4">
+                                    <div class="form-group" style="margin-left: 5px;">
+                                        <label class="sr-only">Maximum Discount</label>
+                                        <input class="form-control" type="text" formControlName="maximumamount"
+                                            placeholder="Enter Maximum Discount">
+                                        <p>
+                                            <span class="text-danger" *ngIf="!iform.get('maximumamount')?.value && formSubmitted">
+                                                Maximum Discount required.
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group" style="margin-left: 5px;">
+                                        <label class="sr-only">Minimum Discount</label>
+                                        <input class="form-control" type="text" formControlName="minmumamount"
+                                            placeholder="Enter Minimum Discount ">
+                                        <p>
+                                            <span class="text-danger" *ngIf="!iform.get('minmumamount')?.value && formSubmitted">
+                                                Minimum Discount required.
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group" style="margin-left: 5px;">                                       
+                                        <p class="input-group date" id="datetimepicker">
+                                           <input class="form-control" type="text" placeholder="From Date">
+                                           <span class="input-group-addon">
+                                              <span class="fa fa-calendar"></span>
+                                           </span>
+                                        </p>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <button class="btn btn-primary" type="submit" style="width: 100px; margin-left: 40px;">Add</button>
+                            <button class="btn btn-danger m-r-10 m-t-10" type="reset"
+                                style="width: 100px; margin-left: 10px;">Reset</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <!-- <input type="text" class="form-control" [(ngModel)]="searchText"
+                                placeholder="search by Influencer name"> -->
+                            <table class="table table-striped table-hover" style="text-align: center;">
+                                <thead>
+                                    <tr>
+                                        <th  style="text-align: center;">#</th>
+                                        <th  style="text-align: center;">Discount Code</th>
+                                        <th  style="text-align: center;">Discount Type</th>
+                                        <th  style="text-align: center;">Discount </th>
+                                        <th  style="text-align: center;">Maximum Discount</th>
+                                        <th  style="text-align: center;">Minimum Discount </th>
+                                        <th class="sort-alpha"  style="text-align: center;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- searchFilter : searchText  | -->
+                                    <tr *ngFor="let b of influcencerlist| paginate: { itemsPerPage: 10, currentPage: p } ; let i=index;">
+                                        <td>
+                                            {{i+1}}
+                                        </td>
+                                        <td>
+                                            {{b.discountcode}}
+                                        </td>
+                                        <td>
+                                            {{b.discountType}}
+                                        </td>
+                                        <td>
+                                            {{b.discount}}
+                                        </td>
+                                        <td>
+                                            {{b.maximumamount}}
+                                        </td>
+                                        <td>
+                                            {{b.minmumamount}}
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-default btn-sm" (click)="edit(b.guidBrandId)"
+                                                style="margin-left: 5px;"><i class="icon-note"></i></button>
+                                            <button class="btn btn-default btn-sm" (click)="delete(b.guidBrandId)"
+                                                style="margin-left: 5px;"><i
+                                                    class="fa fa-trash text-danger"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="text-align: right;">
+                                            <pagination-controls (pageChange)="p = $event"
+                                                class="float-right"></pagination-controls>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,150 @@
+<div class="content-wrapper">
+    <div class="content-heading">Add New Pickuplocation</div>
+    <!-- <div class="alert alert-info">
+       <em class="fa fa-exclamation-circle fa-lg fa-fw"></em>
+       <span>There is an autosaved version of this article that is more recent than the version below. <a class="text-white" href="#">Restore</a>
+       </span>
+    </div> -->
+    <div class="row">
+       <!-- Article Content-->
+       <div class="col-lg-9">
+         <form [formGroup]="eform" (ngSubmit)="addpickuplocation()">
+          <div class="panel panel-default">
+             <div class="panel-body">
+               <div class="col-sm-12">
+               <div class="col-sm-4">
+                  <div class="form-group">
+                     <label>Contact Name</label>
+                     <input class="form-control"  type="text" formControlName="contactName" name="Contact name" placeholder="name...">
+                     <p>
+                      <span class="text-danger"  *ngIf="!eform.get('contactName').value && formSubmitted">
+                          name required.
+                      </span>                         
+                    
+                    </p> 
+                  </div>
+               </div>
+                  <div class="col-sm-4">
+                     <div class="form-group">
+                        <label>Contact Number</label>
+                        <input class="form-control"  type="text" formControlName="contactNumber" name="Contact Number" placeholder="contact number...">
+                   <p>
+                    <span class="text-danger"  *ngIf="!eform.get('contactNumber').value && formSubmitted">
+                        contactNumber required.
+                    </span>                         
+                  
+                  </p> 
+                     </div>
+                  </div>
+                     <div class="col-sm-4">
+                        <div class="form-group">
+                           <label> Contact Number2</label>
+                           <input class="form-control" type="text" formControlName="contactNumber2" name="Contact Number2" placeholder="contact number 2...">
+                           <p>
+                             <span class="text-danger"  *ngIf="!eform.get('contactNumber2').value && formSubmitted">
+                                 contactNumber required.
+                             </span>                         
+                           
+                           </p> 
+                        </div>
+                     </div>
+                
+             </div>
+               </div>
+          
+          </div>
+                  <div class="panel panel-default">
+                     <div class="panel-body">
+
+                        <div class="col-sm-12">
+                           <div class="col-sm-4">
+                              <div class="form-group">
+                                 <label> Address</label>
+                                 <input class="form-control" type="text" formControlName="address1" name="Address 1" placeholder="address...">
+                        <p>
+                          <span class="text-danger"  *ngIf="!eform.get('address1').value && formSubmitted">
+                              address1 required.
+                          </span>                         
+                        
+                        </p> 
+                              </div>
+                           </div>
+                              <div class="col-sm-4">
+                                 <div class="form-group">
+                                    <label> Address 2</label>
+                                    <input class="form-control" type="text" formControlName="address2" name="Address 2" placeholder="address...">
+                                 </div>
+                              </div>
+                                 <div class="col-sm-4">
+                                    <div class="form-group">
+                                       <label> City</label>
+                                       <input class="form-control" type="text" formControlName="city" name="City" placeholder="city...">
+                                       <p>
+                                         <span class="text-danger"  *ngIf="!eform.get('city').value && formSubmitted">
+                                             city required.
+                                         </span>                         
+                                       
+                                       </p> 
+                                    </div>
+                                 </div>
+                                 <div class="col-sm-4">
+                                    <div class="form-group">
+                                       <label> State</label>
+                                       <input class="form-control"  type="text" formControlName="state" name="State" placeholder="state...">
+                  <p>
+                    <span class="text-danger"  *ngIf="!eform.get('state').value && formSubmitted">
+                        state required.
+                    </span>                         
+                  
+                  </p> 
+                                    </div>
+                                 </div>
+
+
+                                 <div class="col-sm-4">
+                                    <div class="form-group">
+                                       <label> ZipCode</label>
+                                       <input class="form-control"  type="text" formControlName="zipcode" name="ZipCode" placeholder="zipcode...">
+                  <p>
+                    <span class="text-danger"  *ngIf="!eform.get('zipcode').value && formSubmitted">
+                        zipcode required.
+                    </span>                         
+                  
+                  </p> 
+                                    </div>
+                                 </div>
+
+                         </div>
+
+
+
+
+
+                       
+      
+
+                 
+                     </div></div>
+                
+                         <div class="panel panel-default">
+                           <div class="panel-body">
+                
+                  <div class="clearfix">
+                      <div class="pull-left">
+                        
+                         <button class="btn btn-primary m-t-10" type="submit">
+                            <em class="fa fa-check fa-fw"></em>Save</button>
+                      </div>
+                      <div class="pull-right">
+                         <a  routerLink="/pickuplocation/pickuplocationlist" class="btn btn-danger m-r-10 m-t-10" type="button">
+                            <em class="fa fa-trash fa-fw"></em>Back</a>
+                      </div>
+                   </div>
+              
+             </div>
+          </div>
+         </form>
+       </div>
+    
+    </div>
+ </div>

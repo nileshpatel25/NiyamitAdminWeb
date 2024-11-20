@@ -1,0 +1,231 @@
+<section>
+    <!-- Page content-->
+    <div class="content-wrapper">
+       <div class="row">
+          <div class="col-md-4">
+             <div class="panel b">
+                <div class="panel-heading bb">
+                   <h4 class="panel-title">Order Summnary</h4>
+                </div>
+                <div class="panel-body bt">
+                   <h4 class="b0">Order #{{orderno}}</h4>
+                </div>
+                <table class="table">
+                   <tbody>
+                      <tr>
+                         <td>Status</td>
+                         <td>
+                            <div class="text-right text-bold">{{status}}</div>
+                         </td>
+                      </tr>
+                      <tr>
+                         <td>Payment Method</td>
+                         <td>
+                            <div class="text-right text-bold">{{paymenttype}}</div>
+                         </td>
+                      </tr>
+                   
+                      <tr>
+                        <td> Order Type</td>
+                        <td>
+                           <div class="text-right text-bold">{{ordertype}}</div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>Payment Status</td>
+                        <td>
+                           <div class="text-right text-bold">Done</div>
+                        </td>
+                     </tr>
+                     
+                   </tbody>
+                </table>
+              
+             </div>
+          </div>
+          <div class="col-md-4">
+            <div class="panel b">
+               <div class="panel-heading bb">
+                  <h4 class="panel-title">Customer Information</h4>
+               </div>
+               <div class="panel-body bt">
+                  <h4 class="b0">Order #{{orderno}}</h4>
+               </div>
+               <table class="table">
+                  <tbody>
+                     <tr>
+                      
+                        <td>
+                           <div class="text-right text-bold">{{name}}</div>
+                        </td>
+                     </tr>
+                     <tr>
+                      
+                        <td>
+                           <div class="text-right text-bold">{{phoneno}}</div>
+                        </td>
+                     </tr>
+                  
+                     <tr>
+                       
+                       <td>
+                          <div class="text-right text-bold">{{email}}</div>
+                       </td>
+                    </tr>
+                    <tr>
+                       
+                       <td>
+                          <div class="text-right text-bold">{{address}}</div>
+                       </td>
+                    </tr>
+                    
+                  </tbody>
+               </table>
+             
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="panel b">
+               <div class="panel-heading bb">
+                  <h4 class="panel-title">PickUp Location Information</h4>
+               </div>
+               <div class="panel-body bt">
+                  <h4 class="b0">Order #{{orderno}}</h4>
+               </div>
+               <table class="table">
+                  <tbody>
+                     <tr>
+                      
+                        <td>
+                           <div class="text-right text-bold">{{pcontactName}}</div>
+                        </td>
+                     </tr>
+                     <tr>
+                      
+                        <td>
+                           <div class="text-right text-bold">{{pcontactNumber}}</div>
+                        </td>
+                     </tr>
+                  
+                     <tr>
+                       
+                       <td>
+                          <div class="text-right text-bold">{{paddress}}</div>
+                       </td>
+                    </tr>
+                    <!-- <tr>
+                       
+                       <td>
+                          <div class="text-right text-bold">{{address1}}</div>
+                       </td>
+                    </tr> -->
+                    
+                  </tbody>
+               </table>
+             
+            </div>
+         </div>
+       </div>
+         <div class="row">
+          <div class="col-md-8">
+             <div class="container-md">
+                <!-- Checkout Process-->
+              
+                      <!-- Checkout Method-->
+                     
+                      <!-- Billing Information-->
+                     
+                      <!-- Shipping Information-->
+                     
+                      <!-- Shipping Method-->
+                      
+                      <!-- Payment Information-->
+                     
+                      <!-- Order Review-->
+                      <div class="panel b">
+                         <div class="panel-heading">
+                            <h4 class="panel-title"> Order Review
+                            </h4>
+                         </div>
+                       
+                               <div class="table-responsive">
+                                  <table class="table">
+                                     <colgroup>
+                                        <col class="order-pic" span="1">
+                                           <col class="order-item-name" span="2">
+                                              <col class="order-qty" span="1">
+                                                 <col class="order-price" span="1">
+                                                    <col class="order-tax" span="1">
+                                                       <col class="order-total" span="1">
+                                     </colgroup>
+                                     <thead class="bg-gray-lighter">
+                                        <tr>
+                                           <th></th>
+                                           <th>Product Title</th>
+                                           <th class="wd-xs">Qty</th>
+                                           <th>Unit Price</th>
+                                         
+                                           <th>Total</th>
+                                        </tr>
+                                     </thead>
+                                     <tfoot>
+                                        <tr>
+                                           <td colspan="4">Subtotal</td>
+                                           <td>${{total}}</td>
+                                        </tr>
+                                        <tr>
+                                           <td colspan="4">Shipping &amp; Handling (Free)</td>
+                                           <td>${{shippingcharg}}</td>
+                                        </tr>
+                                        <tr>
+                                           <td colspan="4">Tax</td>
+                                           <td>${{tax}}</td>
+                                        </tr>
+                                        <tr class="order-subtotal">
+                                           <td colspan="4">Subtotal</td>
+                                           <td>${{total + shippingcharg + tax}}</td>
+                                        </tr>
+                                     </tfoot>
+                                     <tbody>
+                                        <tr *ngFor="let d of orderdetail">
+                                           <td class="order-pic thumb64">
+                                              <img src='https://stpavakstorage.blob.core.windows.net/productimages/{{d.products[0].thumbnail_Image_Url}}' width="50px" height="50px">
+                                           </td>
+                                           <td class="order-item-name">{{d.products[0].productName}}</td>
+                                           <td class="order-qty">
+                                              {{d.quantity}}
+                                           </td>
+                                           <td class="order-price">$ {{d.price}}</td>
+                                          
+                                           <td class="order-total">$ {{d.totalprice}}</td>
+                                        </tr>
+                                       
+                                     </tbody>
+                                  </table>
+                               </div>
+                             
+                      </div>
+                  
+             </div>
+          </div>
+
+         
+       </div>
+
+       <div class="row">
+        <div class="col-sm-12">
+            <div class="clearfix">
+                <div class="pull-left">
+                  
+                  
+                </div>
+                <div class="pull-right">
+                   <a routerLink="/order/orderlist" class="btn btn-danger m-r-10 m-t-10" type="button">
+                      <em class="fa fa-trash fa-fw"></em>Back</a>
+                </div>
+             </div>
+        <!-- <button class="btn btn-sm btn-default" type="submit">Submit</button> -->
+         </div>
+       </div>
+    </div>
+ </section>
