@@ -41,6 +41,19 @@
                            </div>
                         </div>
                      </div>
+                    
+                  </div>
+               </div>
+               <div class="panel panel-default">
+                  <div class="panel-body">
+                     <div class="col-sm-12">
+                        <div class="col-sm-6">
+                           <div class="form-group">
+                              <label> Discription</label>
+                           <angular-editor  [config]="config" formControlName="description"></angular-editor>
+                           </div>
+                           </div>
+                     </div>
                   </div>
                </div>
                <div class="panel panel-default">
@@ -71,15 +84,15 @@
                                  {{i+1}}
                               </td>
                               <td>
-                                 {{c.gallaryname}}
+                                 {{c.galleryName}}
                               </td>
                               <td>
-                                 {{c.videourl}}
+                                 {{c.videoUrl}}
                               </td>
                               <td>
-                                 <button class="btn btn-default btn-sm" (click)="edit(c.guidGallaryvideoid)"
+                                 <button class="btn btn-default btn-sm" (click)="edit(c.guidGalleryVideoId)"
                                     style="margin-left: 5px;"><i class="icon-note"></i></button>
-                                 <button class="btn btn-default btn-sm" (click)="delete(c.guidGallaryvideoid)"
+                                 <button class="btn btn-default btn-sm" (click)="delete(c.guidGalleryVideoId)"
                                     style="margin-left: 5px;"><i class="fa fa-trash text-danger"></i></button>
                               </td>
                            </tr>

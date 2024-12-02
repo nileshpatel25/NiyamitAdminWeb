@@ -7,15 +7,15 @@ import { HttpHeaders } from '@angular/common/http';
 // import { NgxSpinnerService } from "ngx-spinner";
 import { Router } from '@angular/router';
 @Component({
-  selector: 'app-brandlist',
-  templateUrl: './brandlist.component.html',
-  styleUrls: ['./brandlist.component.css']
+  selector: 'app-unitlist',
+  templateUrl: './unitlist.component.html',
+  styleUrls: ['./unitlist.component.css']
 })
-export class BrandlistComponent implements OnInit {
+export class UnitlistComponent implements OnInit {
   p: number = 1;
   searchText = '';
   dataSource: any;
-  brandlist:any=[];
+  unitlist:any=[];
   
   formSubmitted:boolean=false;
   mode:any='insert';
@@ -24,21 +24,21 @@ export class BrandlistComponent implements OnInit {
   constructor( private apiservice:ApiService,private toast:ToastrService,  private fb:FormBuilder,private appservice: AppService,
     private router:Router) { }
 
+
+
   ngOnInit(): void {
     this.appservice.checktoken();
-    this.getbrandlist();
+    this.getuntilist();
     this.bform=this.fb.group({
-      userid:[localStorage.userid],
-      guid_VendorId: [localStorage.userid],
-      brandName:['',Validators.required],
-      guidBrandId:['']
+      userid:[localStorage.userid],    
+      unitname:['',Validators.required],
+      unitguid:['']
           });
   }
-
-  getbrandlist(){
-    this.apiservice.getapi('Brand/GetAllBrands?Guid_VendorId='+localStorage.userid).subscribe(resp=>{
+  getuntilist(){
+    this.apiservice.getapi('Unit/GetAllUnits').subscribe(resp=>{
       if(resp.status){
-this.brandlist=resp.brands;
+this.unitlist=resp.unitdata;
 
       }});
 
@@ -51,19 +51,19 @@ this.brandlist=resp.brands;
    // this.apiService.getData(url?page=event);
    }
 
-   addbrand(){
-
+   addunit(){
+   
     this.formSubmitted=true;
     if(this.bform.valid && this.formSubmitted){
    
     if(this.mode=='insert')
     {
-      this.apiservice.postapi('Brand/Addnewbrand',this.bform.value).subscribe(resp=>{
+      this.apiservice.postapi('Unit/Addnewunit',this.bform.value).subscribe(resp=>{
         if(resp.status){
           this.toast.success(resp.message);
       this.bform.reset();
       this.formSubmitted=false;
-           this.getbrandlist();
+           this.getuntilist();
         }
         else{
           this.toast.error(resp.message);
@@ -72,12 +72,12 @@ this.brandlist=resp.brands;
 
     }
     else{
-      this.apiservice.postapi('Brand/Updatebrand',this.bform.value).subscribe(resp=>{
+      this.apiservice.postapi('Unit/Updateunit',this.bform.value).subscribe(resp=>{
         if(resp.status){
           this.toast.success(resp.message);
       this.bform.reset();
       this.formSubmitted=false;
-           this.getbrandlist();
+           this.getuntilist();
            this.mode='insert';
         }
         else{
@@ -91,13 +91,12 @@ this.brandlist=resp.brands;
 
   edit(id:string)
   {
-    const brand=this.brandlist.filter((resp: any)=>{
-      return resp.guidBrandId===id;
+    const brand=this.unitlist.filter((resp: any)=>{
+      return resp.unitGuid===id;
     });
     this.bform.patchValue({
-      brandName:brand[0].brandName,
-      guidBrandId:id,
-      guid_VendorId: localStorage.userid,
+      unitname:brand[0].unitName,
+      unitguid:id,
       userid:localStorage.userid
     });
    
@@ -107,7 +106,7 @@ this.brandlist=resp.brands;
   delete(id:string)
   {
     console.log(id);
-    const brand=this.brandlist.filter((resp: any)=>{
+    const brand=this.unitlist.filter((resp: any)=>{
       return resp.guidBrandId===id;
     });
     this.bform.get("guidBrandId")?.setValue(id);
@@ -115,7 +114,7 @@ this.brandlist=resp.brands;
     this.apiservice.postapi('Brand/Deletebrand',this.bform.value).subscribe(resp=>{
       if(resp.status)
       {
-        this.getbrandlist();
+        this.getuntilist();
        this.toast.success(resp.message);
       }
     })

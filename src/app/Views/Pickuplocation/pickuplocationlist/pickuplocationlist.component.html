@@ -72,8 +72,8 @@
 <td>{{c.address1}}</td>
 <td >
  
-   <button class="btn btn-default btn-sm"  [routerLink]="['/pickuplocation/addpickuplocation']" [queryParams]="{ guid: c.guid_PickupLocationId }" style="margin-left: 5px;"><i class="icon-note"></i></button>  
-    <button class="btn btn-default btn-sm" (click)="delete(c.guid_PickupLocationId)" style="margin-left: 5px;"><i class="fa fa-trash text-danger"></i></button>  
+   <button class="btn btn-default btn-sm"  [routerLink]="['/pickuplocation/addpickuplocation']" [queryParams]="{ guid: c.guidPickupLocationId }" style="margin-left: 5px;"><i class="icon-note"></i></button>  
+    <button class="btn btn-default btn-sm" (click)="delete(c.guidPickupLocationId)" style="margin-left: 5px;"><i class="fa fa-trash text-danger"></i></button>  
 </td>
 
                             </tr>

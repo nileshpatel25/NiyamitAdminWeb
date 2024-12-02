@@ -44,30 +44,33 @@ export class LoginComponent implements OnInit {
   }
 login()
 {
-  this.formSubmitted=true;
-  if(this.loginform.valid && this.formSubmitted)
-  {   
-    const body=new URLSearchParams();
-    body.set('userName',this.loginform.value.userName);
-    body.set('password',this.loginform.value.password);
-    body.set('grantType','password');
-    const options = {
-      headers: new HttpHeaders().set('Access-Control-Allow-Origin','*')
-    };
-    this.apiservice.postapi('Account/login',this.loginform.value).subscribe(resp=>{
-      if(resp.status){
-        this.router.navigate(['/Dashboard']);
-      //  this.toast.success('','login successfully..');
-        this.appservice.login(resp);
-      }
-      else{
-        alert('username and password incorrect');
-      //  this.toast.error('Error!',resp.error_description);
-      }
-    });
-  }else
-  {
-    //this.toast.error('Error!','Invalid User!');
-  }
+  localStorage.setItem('userid','ba6232f2-ad3e-48e4-ad50-1af62ceb17e3');
+  localStorage.setItem('businesscategoryid','1e57030d-b477-4205-8d64-11384eaa483e');
+  this.router.navigate(['/Dashboard']);
+  // this.formSubmitted=true;
+  // if(this.loginform.valid && this.formSubmitted)
+  // {   
+  //   const body=new URLSearchParams();
+  //   body.set('userName',this.loginform.value.userName);
+  //   body.set('password',this.loginform.value.password);
+  //   body.set('grantType','password');
+  //   const options = {
+  //     headers: new HttpHeaders().set('Access-Control-Allow-Origin','*')
+  //   };
+  //   this.apiservice.postapi('Account/login',this.loginform.value).subscribe(resp=>{
+  //     if(resp.status){
+  //       this.router.navigate(['/Dashboard']);
+  //     //  this.toast.success('','login successfully..');
+  //       this.appservice.login(resp);
+  //     }
+  //     else{
+  //       alert('username and password incorrect');
+  //     //  this.toast.error('Error!',resp.error_description);
+  //     }
+  //   });
+  // }else
+  // {
+  //   //this.toast.error('Error!','Invalid User!');
+  // }
 }
 }

@@ -20,6 +20,7 @@ export class AddproductComponent implements OnInit {
   categorylist:any=[];
   categorylst:any=[];
   subcategorylist:any=[];
+  allunitfactornamelist:any=[];
   brandlist:any=[];
   unitlist:any=[];
   guid:any;
@@ -63,26 +64,31 @@ export class AddproductComponent implements OnInit {
   ngOnInit(): void {
     this.appservice.checktoken();
     this.getcategorybind();
+    this.getallunitfactorname();
    this.getunitlist();
     this.getbrandlist();
     this.pform=this.fb.group({
-      guid_ProductId:[''],
-      guid_CategoryId:[''],
-      userId:[localStorage.userid],
-      guid_SubCategoryId:[''],
+      guid_ProductId:['0'],
+      guid_CategoryId:['',Validators.required],
+      userid:[localStorage.userid],
+      guid_VendorId: [localStorage.userid],
+      guid_SubCategoryId:['',Validators.required],
       guid_SubSubCategoryId:[''],
-      guid_UnitId:[''],
-      is_Organic:[''],
-      discountType:[''],
+      guid_UnitFactorId:['',Validators.required],
+      guid_UnitId:['',Validators.required],
+      is_Organic:[false],
+      discountType:['',Validators.required],
       productName:['',Validators.required],
-      short_Description:[''],
-      full_Description:[''],
-      guid_BrandId:[''],
+      code:['',Validators.required],
+      orderno:['',Validators.required],
+      short_Description:['',Validators.required],
+      full_Description:['',Validators.required],
+      guid_BrandId:['',Validators.required],
       thumbnail_Image_Url:[''],
-      available_Stock:[''],
-      maxPurchaseQty:[''],
-      price:[''],
-      tag:[''],
+      available_Stock:['',Validators.required],
+      maxPurchaseQty:['',Validators.required],
+      price:['',Validators.required],
+      tag:['',Validators.required],
       is_InSale:[false],
       discount:['']
           });
@@ -94,25 +100,28 @@ export class AddproductComponent implements OnInit {
   getproductdata(guid:any){
     this.apiservice.postapi('Product/GetProductbyId?Guid_Productid='+guid).subscribe(resp=>{
       if(resp.status){
-        this.getsubcategory(resp.productDatas[0].guid_CategoryId);
+        this.getsubcategory(resp.productDatas[0].guidCategoryId);
         this.pform.patchValue({
-          guid_ProductId:resp.productDatas[0].guid_ProductId,
-          guid_CategoryId:resp.productDatas[0].guid_CategoryId,
+          guid_ProductId:resp.productDatas[0].guidProductId,
+          guid_CategoryId:resp.productDatas[0].guidCategoryId,
       userId:localStorage.userid,
-      guid_SubCategoryId:resp.productDatas[0].guid_SubCategoryId,
-      guid_SubSubCategoryId:resp.productDatas[0].guid_SubSubCategoryId,
+      guid_SubCategoryId:resp.productDatas[0].guidSubCategoryId,
+      guid_SubSubCategoryId:resp.productDatas[0].guidSubSubCategoryId,
+      guid_UnitFactorId:resp.productDatas[0].guidUnitFactorId,
       productName: resp.productDatas[0].productName,
-      short_Description:resp.productDatas[0].short_Description,
-      full_Description:resp.productDatas[0].full_Description,
-      guid_BrandId:resp.productDatas[0].guid_BrandId,
-      thumbnail_Image_Url:resp.productDatas[0].thumbnail_Image_Url,
-      available_Stock:resp.productDatas[0].available_Stock,
+      code:resp.productDatas[0].code,
+      orderno: resp.productDatas[0].orderNo,
+      short_Description:resp.productDatas[0].shortDescription,
+      full_Description:resp.productDatas[0].fullDescription,
+      guid_BrandId:resp.productDatas[0].guidBrandId,
+      thumbnail_Image_Url:resp.productDatas[0].thumbnailImageUrl,
+      available_Stock:resp.productDatas[0].availableStock,
       price:resp.productDatas[0].price,
-      is_InSale:false,
+      is_InSale:resp.productDatas[0].isInSale,
       discount:resp.productDatas[0].discount,
       discountType:resp.productDatas[0].discountType,
-      guid_UnitId:resp.productDatas[0].guid_UnitId,
-      is_Organic:resp.productDatas[0].is_Organic,
+      guid_UnitId:resp.productDatas[0].guidUnitId,
+      is_Organic:resp.productDatas[0].isOrganic,
       tag:resp.productDatas[0].tag,
       maxPurchaseQty:resp.productDatas[0].maxPurchaseQty
         })
@@ -129,8 +138,23 @@ export class AddproductComponent implements OnInit {
     this.selectedFile=fileInput.target.files[0];
    
     }
+    //unit Factor
+getallunitfactorname(){
+  
+  this.apiservice.getapi('UnitFactorName/allunitquantityfactorwithnamelist').subscribe(resp=>{
+    debugger;
+//this.allunitfactornamelist=resp.lstItems;
+this.allunitfactornamelist=resp.unitfactornamedatas;
+//this.fields={ dataSource: this.data, value: 'guid_UnitFactorId', text: 'unitfactorname', child: 'unitQuantityFactorsDatas' };
+  
+
+//   const pages = Array.from(Array((this.lastPage + 1) - this.pageNo).keys()).map(i => this.pageNo + i);
+  //  this.pagelist=pages;
+    });
+
+}   
   getcategorybind(){
-    this.apiservice.getapi('Category/categorylist').subscribe(resp=>{
+    this.apiservice.getapi('Category/categorylist?Guid_VendorId='+localStorage.userid).subscribe(resp=>{
       this.categorylst=resp.categoryDatas;
     
              
@@ -155,7 +179,7 @@ export class AddproductComponent implements OnInit {
   
   }
   getbrandlist(){
-    this.apiservice.getapi('Brand/GetAllBrands').subscribe(resp=>{
+    this.apiservice.getapi('Brand/GetAllBrands?Guid_VendorId='+localStorage.userid).subscribe(resp=>{
       this.brandlist=resp.brands;
     
              

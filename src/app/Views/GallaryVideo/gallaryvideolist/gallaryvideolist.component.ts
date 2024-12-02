@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AppService } from '../../../Services/app.service';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 @Component({
   selector: 'app-gallaryvideolist',
   templateUrl: './gallaryvideolist.component.html',
@@ -20,6 +21,34 @@ export class GallaryvideolistComponent implements OnInit {
   mode: any = 'insert';
   cform!: FormGroup;
   selectedFile: File | null = null;
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '15rem',
+    minHeight: '5rem',
+    placeholder: 'Enter text here...',
+    translate: 'no',
+    defaultParagraphSeparator: 'p',
+    defaultFontName: 'Arial',
+    toolbarHiddenButtons: [
+      ['bold']
+      ],
+    customClasses: [
+      {
+        name: "quote",
+        class: "quote",
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: "titleText",
+        class: "titleText",
+        tag: "h1",
+      },
+    ]
+  };
   constructor(private apiservice: ApiService, private toast: ToastrService, private http: HttpClient, private fb: FormBuilder, private appservice: AppService,
     private router: Router) { }
   ngOnInit(): void {
@@ -27,23 +56,25 @@ export class GallaryvideolistComponent implements OnInit {
     this.getvideourllist();
     this.getGallarybind();
     this.cform = this.fb.group({
-      guidGallaryvideoid: [''],
-      userId: [localStorage.userid],
+      guidGallaryvideoid: ['0'],
+      userid: [localStorage.userid],
+      guidVendorId: [localStorage.userid],
       guidGallaryid: ['', Validators.required],
       videourl: ['', Validators.required],
-      isPrimery: [false]
+      isPrimery: [false],
+      description:['']
     });
   }
   fileProgress(fileInput: any) {
     this.selectedFile = fileInput.target.files[0];
   }
   getGallarybind() {
-    this.apiservice.getapi('Gallary/GetAllGallaryList').subscribe(resp => {
+    this.apiservice.getapi('Gallary/GetAllGallaryList?Guid_VendorId='+localStorage.userid).subscribe(resp => {
       this.gallarylst = resp.gallaryDatas;
     });
   }
   getvideourllist() {
-    this.apiservice.getapi('GallaryVideo/GetAllGallaryVideoList').subscribe(resp => {
+    this.apiservice.getapi('GallaryVideo/GetAllGallaryVideoList?Guid_VendorId='+localStorage.userid).subscribe(resp => {
       this.videourllist = resp.gallaryVideoDatas;
       console.log("V_List",this.videourllist);
     });
@@ -94,13 +125,16 @@ export class GallaryvideolistComponent implements OnInit {
 
   edit(id: string) {
     const videourl = this.videourllist.filter((resp: any) => {
-      return resp.guidGallaryvideoid === id;
+      return resp.guidGalleryVideoId === id;
     });
     this.cform.patchValue({
-      guidGallaryvideoid: videourl[0].guidGallaryvideoid,
-      guidGallaryid: videourl[0].guidGallaryid,
-      videourl: videourl[0].videourl,
-      isPrimery: videourl[0].isPrimery
+      guidGallaryvideoid: videourl[0].guidGalleryVideoId,
+      guidGallaryid: videourl[0].guidGalleryId,
+      guidVendorId:videourl[0].guidVendorId,
+      videourl: videourl[0].videoUrl,
+      isPrimery: videourl[0].isPrimary,
+      userid: localStorage.userid,
+      description: videourl[0].description
     });
     this.mode = 'edit';
   }

@@ -55,25 +55,25 @@
                               <td>
                                  {{c.category}}
                               </td>
-                              <td style="width: 20%;" [innerHTML]="c.short_Description"></td>
+                              <td style="width: 20%;" [innerHTML]="c.shortDescription"></td>
                               <td>{{c.price}}</td>
                               <td>
                                  <img
-                                    src='https://stpavakstorage.blob.core.windows.net/productimages/{{c.thumbnail_Image_Url}}'
+                                    src='https://niyamitstorage.blob.core.windows.net/productimages/{{c.thumbnailImageUrl}}'
                                     height="50px" width="50px">
                               </td>
                               <td>
                                  <mat-slide-toggle id="" [(ngModel)]="c.isActive"
-                                    (change)="toggleChange($event,c.guid_ProductId)"></mat-slide-toggle>
+                                    (change)="toggleChange($event,c.guidProductId)"></mat-slide-toggle>
                               </td>
                               <td>
                                  <button class="btn btn-default btn-sm" [routerLink]="['/product/addproductimage']"
-                                    [queryParams]="{ guid: c.guid_ProductId }" style="margin-left: 5px;"><i
+                                    [queryParams]="{ guid: c.guidProductId }" style="margin-left: 5px;"><i
                                        class="fa fa-camera bg-purple"></i></button>
                                  <button class="btn btn-default btn-sm" [routerLink]="['/product/addnewproduct']"
-                                    [queryParams]="{ guid: c.guid_ProductId }" style="margin-left: 5px;"><i
+                                    [queryParams]="{ guid: c.guidProductId }" style="margin-left: 5px;"><i
                                        class="icon-note"></i></button>
-                                 <button class="btn btn-default btn-sm" (click)="delete(c.guid_ProductId)"
+                                 <button class="btn btn-default btn-sm" (click)="delete(c.guidProductId)"
                                     style="margin-left: 5px;"><i class="fa fa-trash text-danger"></i></button>
                               </td>
                            </tr>

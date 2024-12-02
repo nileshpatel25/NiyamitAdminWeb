@@ -28,7 +28,7 @@ export class ContactuslistComponent implements OnInit {
     this.getcontactlist();
   }
   getcontactlist() {
-    this.apiservice.getapi('ContactUs/GetAllContactUsList').subscribe(resp => {
+    this.apiservice.getapi('ContactUs/GetAllContactUsList?Guid_VendorId='+localStorage.userid).subscribe(resp => {
       if (resp.status) {
         this.contactuslist = resp.contactUsDatas;
         console.log('ContactUsList',this.contactuslist);

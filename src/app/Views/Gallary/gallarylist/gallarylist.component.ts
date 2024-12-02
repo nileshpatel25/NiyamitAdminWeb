@@ -27,9 +27,10 @@ export class GallarylistComponent implements OnInit {
               this.appservice.checktoken();
               this.getgallarylist();
           this.gform=this.fb.group({
-            userId:[localStorage.userid],
+            userid:[localStorage.userid],
+            guid_VendorId:[localStorage.userid],
             name:['',Validators.required],
-            guidGallaryId:['']
+            guidGallaryId:['0']
           });
     
   }
@@ -72,7 +73,8 @@ export class GallarylistComponent implements OnInit {
     this.gform.patchValue({
       name:gallary[0].name,
       guidGallaryId:id,
-      userId:localStorage.userId
+      guid_VendorId:localStorage.userid,
+      userid:localStorage.userid
     });
     this.mode='edit';
   }
@@ -82,7 +84,7 @@ export class GallarylistComponent implements OnInit {
       return resp.guidGallaryId===id;
     });
     this.gform.get("guidGallaryId")?.setValue(id);
-    this.gform.get("userId")?.setValue(localStorage.userId);
+    this.gform.get("userid")?.setValue(localStorage.userid);
     this.apiservice.postapi('Gallary/DeleteGallary',this.gform.value).subscribe(resp=>{
       if(resp.status){
         this.getgallarylist();
@@ -94,7 +96,7 @@ export class GallarylistComponent implements OnInit {
     // this.apiService.getData(url?page=event);
     }
   getgallarylist(){
-    this.apiservice.getapi('Gallary/GetAllGallaryList').subscribe(resp =>{
+    this.apiservice.getapi('Gallary/GetAllGallaryList?Guid_VendorId='+localStorage.userid).subscribe(resp =>{
       if(resp.status){
         this.gallarylist=resp.gallaryDatas;
       }});

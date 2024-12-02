@@ -40,7 +40,7 @@ export class ProductlistComponent implements OnInit {
   }
 
   getproductlist(){
-    this.apiservice.getapi('Product/GetAllProductadmin').subscribe(resp=>{
+    this.apiservice.getapi('Product/GetAllProduct?Guid_VendorId='+localStorage.userid).subscribe(resp=>{
       if(resp.status){
           this.productlist=resp.productDatas;
           this.filteredProductList = resp.productDatas

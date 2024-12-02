@@ -32,15 +32,15 @@ export class PickuplocationlistComponent implements OnInit {
     this.appservice.checktoken();
     this.getpickuplocationlist();
     this.eform=this.fb.group({
-      guid_Wholesellerid:[''],
-      userId:[localStorage.userid]
+      guid_PickupLocationId:[''],
+      userid:[localStorage.userid]
      
     
           });
   }
 
   getpickuplocationlist(){
-    this.apiservice.getapi('PickupLocation/GetAllPickuplocationList').subscribe(resp=>{
+    this.apiservice.getapi('PickupLocation/GetAllPickuplocationList?Guid_VendorId='+localStorage.userid).subscribe(resp=>{
       if(resp.status){
 this.pickuplocationlist=resp.pickuplocationDatas;
 
@@ -51,7 +51,7 @@ this.pickuplocationlist=resp.pickuplocationDatas;
 
   delete(id:any){
     this.eform.get("guid_PickupLocationId")?.setValue(id);
-    this.eform.get("userId")?.setValue(localStorage.userid);
+    this.eform.get("userid")?.setValue(localStorage.userid);
     this.apiservice.postapi('PickupLocation/Deletepickuplocation',this.eform.value).subscribe(resp=>{
       if(resp.status)
       {

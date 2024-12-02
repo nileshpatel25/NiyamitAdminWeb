@@ -12,7 +12,7 @@
                            <div class="form-group">
                               <select class="form-control" formControlName="guid_SubCategoryId">
                                  <option value="">Select Category</option>
-                                 <option *ngFor="let b of categorylst; let i=index;" value="{{b.guid_CategoryId}}">
+                                 <option *ngFor="let b of categorylst; let i=index;" value="{{b.guidCategoryId}}">
                                     {{b.categoryName}} </option>
                               </select>
                            </div>
@@ -115,17 +115,17 @@
                               <td>{{c.description}}</td>
                               <td>
                                  <img
-                                    src='https://stpavakstorage.blob.core.windows.net/categoryimages/{{c.categoryImg}}'
+                                    src='https://niyamitstorage.blob.core.windows.net/categoryimages/{{c.categoryImg}}'
                                     height="50px" width="50px">
                               </td>
                               <td>
                                  <mat-slide-toggle id="" [(ngModel)]="c.isActive"
-                                    (change)="toggleChange($event,c.guid_CategoryId)"></mat-slide-toggle>
+                                    (change)="toggleChange($event,c.guidCategoryId)"></mat-slide-toggle>
                               </td>
                               <td>
-                                 <button class="btn btn-default btn-sm" (click)="edit(c.guid_CategoryId)"
+                                 <button class="btn btn-default btn-sm" (click)="edit(c.guidCategoryId)"
                                     style="margin-left: 5px;"><i class="icon-note"></i></button>
-                                 <button class="btn btn-default btn-sm" (click)="delete(c.guid_CategoryId)"
+                                 <button class="btn btn-default btn-sm" (click)="delete(c.guidCategoryId)"
                                     style="margin-left: 5px;"><i class="fa fa-trash text-danger"></i></button>
                               </td>
                            </tr>

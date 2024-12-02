@@ -24,20 +24,21 @@ export class AddpickuplocationComponent implements OnInit {
   ngOnInit(): void {
     this.appservice.checktoken();
     this.eform=this.fb.group({
-      guid_PickupLocationId:[''],
-      userId:[localStorage.userid],
+      guid_PickupLocationId:['0'],
+      userid:[localStorage.userid],
+      cityName:[''],
       contactName:['',Validators.required],
       contactNumber:['',Validators.required],
       contactNumber2:['',Validators.required],
-   
+      guid_VendorId: [localStorage.userid],
       address1:['',Validators.required],
       address2:[''],
       city:['',Validators.required],
       state:['',Validators.required],
       zipcode:['',Validators.required],
       country:['USA'],
-      latitude:['0'],
-      longitude:['0']
+      latitude:0,
+      longitude:0
     
           });
           this.guid = this.activrouter.snapshot.queryParamMap.get('guid');
@@ -50,17 +51,16 @@ export class AddpickuplocationComponent implements OnInit {
     this.apiservice.postapi('PickupLocation/GetpickuplocationbyId?guidpickuplocation='+id).subscribe(resp=>{
       if(resp.status){
         this.eform.patchValue({
-          guid_PickupLocationId:resp.pickuplocationDatas[0].guid_PickupLocationId,
+          guid_PickupLocationId:resp.pickuplocationDatas[0].guidPickupLocationId,
           userId:localStorage.userid,
           contactName:resp.pickuplocationDatas[0].contactName,
           contactNumber:resp.pickuplocationDatas[0].contactNumber,
           contactNumber2:resp.pickuplocationDatas[0].contactNumber2,
           address1:resp.pickuplocationDatas[0].address1,
           address2:resp.pickuplocationDatas[0].address2,
-
           city:resp.pickuplocationDatas[0].city,
           state:resp.pickuplocationDatas[0].state,
-          zipcode:resp.pickuplocationDatas[0].zipcode,
+          zipcode:resp.pickuplocationDatas[0].zipCode,
      })
 
       }});

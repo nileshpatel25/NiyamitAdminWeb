@@ -29,9 +29,8 @@ export class ProductimageComponent implements OnInit {
     this.getproductname();
     this.getproductimagelist();
     this.pform=this.fb.group({
-      Guid_ProductId:[this.activrouter.snapshot.queryParamMap.get('guid')],
-      Is_Primary:[true],
-      UserId:[localStorage.userid]
+      guid_ProductImageId:[''],     
+      userId:[localStorage.userid]
     });
   }
 
@@ -66,7 +65,7 @@ export class ProductimageComponent implements OnInit {
    {
      console.log(id);
      const brand=this.productimagelist.filter((resp: any)=>{
-       return resp.guid_ProductImageId===id;
+       return resp.guidProductImageId===id;
      });
      this.pform.get("guid_ProductImageId")?.setValue(id);
      this.pform.get("userId")?.setValue(localStorage.userid);

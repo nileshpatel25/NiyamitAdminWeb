@@ -23,26 +23,40 @@
                 </div>
                   
                 </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                     <label>Item Code</label>
+                     <input class="form-control" type="text" formControlName="code" placeholder="New item code">
+                     <p>
+                       <span class="text-danger" *ngIf="!pform.get('code').value && formSubmitted">
+                          item code required.
+                       </span>
+                     </p>  
+                  </div>
+                    
+                  </div>
             <div class="col-sm-4">
                 <div class="form-group">
                     <label>Category</label>
                     <select class="form-control"  formControlName="guid_CategoryId"  (change)="getsubcategorylist($event)">
                       <option value="">Select Category</option>
-                        <option *ngFor="let b of categorylst; let i=index;" value="{{b.guid_CategoryId}}"> {{b.categoryName}} </option>
+                        <option *ngFor="let b of categorylst; let i=index;" value="{{b.guidCategoryId}}"> {{b.categoryName}} </option>
                     </select>
                   </div> 
             </div>
+                </div>
+            <div class="col-sm-12">
             <div class="col-sm-4">     
                   <div class="form-group">
                     <label> Sub Category</label>
                     <select class="form-control"  formControlName="guid_SubCategoryId">
                       <option value="">Select Sub Category</option>
-                        <option *ngFor="let b of subcategorylist; let i=index;" value="{{b.guid_CategoryId}}"> {{b.categoryName}} </option>
+                        <option *ngFor="let b of subcategorylist; let i=index;" value="{{b.guidCategoryId}}"> {{b.categoryName}} </option>
                     </select>
                   </div>    
             </div>
-                </div>
-                <div class="col-sm-12">
+                
+               
             <div class="col-sm-4"> 
                   <div class="form-group">
                     <label>Brand</label>
@@ -58,25 +72,42 @@
                  <label>Unit</label>
                  <select class="form-control"  formControlName="guid_UnitId">
                    <option value="">Select Unit</option>
-                     <option *ngFor="let b of unitlist; let i=index;" value="{{b.unitguid}}"> {{b.unitname}} </option>
+                     <option *ngFor="let b of unitlist; let i=index;" value="{{b.unitGuid}}"> {{b.unitName}} </option>
                  </select>
                </div>    
          </div>
-          
+            </div>
+         <div class="col-sm-12">
+         <div class="col-sm-4"> 
+            <div class="form-group">
+              <label>Unit Factor Name</label>
+              <select class="form-control"  formControlName="guid_UnitFactorId">
+                <option value="">Select Unit Factor Name</option>
+                  <option *ngFor="let b of allunitfactornamelist; let i=index;" value="{{b.guidUnitFactorId}}"> {{b.unitFactorName}} </option>
+              </select>
+            </div>    
+      </div>
                  <div class="col-sm-4">
                  <div class="form-group">
                     <label>Available Stock</label>
                     <input class="form-control" type="number"  formControlName="available_Stock" placeholder="Ex.100">
                  </div>
                  </div>
-                </div>
-                <div class="col-sm-12">
+              
                  <div class="col-sm-4">
                   <div class="form-group">
                      <label>Maximum Purchase Quantity Limit</label>
                      <input class="form-control" type="number"  formControlName="maxPurchaseQty" placeholder="Ex.10">
                   </div>
                   </div>
+         </div>
+                  <div class="col-sm-12">
+                  <div class="col-sm-4">
+                     <div class="form-group">
+                        <label>Order No</label>
+                        <input class="form-control" type="number"  formControlName="orderno" placeholder="orderno">
+                     </div>
+                     </div>
                  <div class="col-sm-4">
                  <div class="form-group" style="margin-left: 5px;">
                     <label>Product Image</label>
@@ -84,14 +115,7 @@
                     <input class="form-control" type="file" (change)="fileProgress($event)" accept="image/*">
                  </div>
                  </div>
-                 <div class="col-sm-4">
-                  <div class="checkbox c-checkbox" style="margin-top: 35px;">
-                    
-                     <label>
-                        <input type="checkbox" checked="" formControlName="is_Organic">
-                        <span class="fa fa-times"></span>Is organic</label>
-                  </div>
-                   </div>
+                
                 </div>
                  
                
@@ -99,6 +123,30 @@
            
           </div>
        </div>
+       <div class="panel panel-default">
+         
+         <div class="panel-body">
+            <div class="col-sm-12">
+               <div class="col-sm-4">
+                  <div class="checkbox c-checkbox" style="margin-top: 35px;">
+                    
+                     <label>
+                        <input type="checkbox" checked="" formControlName="is_Organic">
+                        <span class="fa fa-times"></span>Is organic</label>
+                  </div>
+                   </div>
+                   <div class="col-sm-4">
+                     <div class="checkbox c-checkbox" style="margin-top: 35px;">
+                       
+                        <label>
+                           <input type="checkbox" checked="" formControlName="is_InSale">
+                           <span class="fa fa-times"></span>Is InSale</label>
+                     </div>
+                      </div>
+           <!-- <button class="btn btn-sm btn-default" type="submit">Submit</button> -->
+            </div>
+         </div>
+      </div>
        <div class="panel panel-default">
          
          <div class="panel-body">

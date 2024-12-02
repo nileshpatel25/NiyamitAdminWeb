@@ -30,10 +30,12 @@ export class CategorylistComponent implements OnInit {
     this.getcategorylist();
     this.getcategorybind();
     this.cform = this.fb.group({
-      guid_CategoryId: [''],
-      userId: [localStorage.userid],
-      guid_SubCategoryId: [''],
-      guid_SubSubCategoryId: [''],
+      guid_CategoryId: ['0'],
+      userid: [localStorage.userid],
+      guid_BusinesscategoryId:[localStorage.businesscategoryid],
+      guid_VendorId: [localStorage.userid],
+      guid_SubCategoryId: ['0'],
+      guid_SubSubCategoryId: ['0'],
       categoryName: ['', Validators.required],
       description: [''],
       categoryImg: [''],
@@ -44,7 +46,7 @@ export class CategorylistComponent implements OnInit {
     this.selectedFile = fileInput.target.files[0];
   }
   getcategorybind() {
-    this.apiservice.getapi('Category/categorylist').subscribe(resp => {
+    this.apiservice.getapi('Category/categorylist?Guid_VendorId='+localStorage.userid).subscribe(resp => {
       this.categorylst = resp.categoryDatas;
       // this.categorylst = this.categorylst.filter((resp : any)=>{
       //   return resp.guid_SubCategoryId===null || resp.guid_SubCategoryId===null;
@@ -52,7 +54,7 @@ export class CategorylistComponent implements OnInit {
     });
   }
   getcategorylist() {
-    this.apiservice.getapi('Category/GetAllCategoryforadmin').subscribe(resp => {
+    this.apiservice.getapi('Category/GetAllCategory?Guid_VendorId='+localStorage.userid).subscribe(resp => {
       if (resp.status) {
         this.categorylist = resp.categoryDatas;
         this.filteredCategorytList = resp.categoryDatas;
@@ -120,16 +122,18 @@ export class CategorylistComponent implements OnInit {
   }
   edit(id: string) {
     const category = this.categorylist.filter((resp: any) => {
-      return resp.guid_CategoryId === id;
+      return resp.guidCategoryId === id;
     });
     this.cform.patchValue({
-      guid_CategoryId: category[0].guid_CategoryId,
-      guid_SubCategoryId: category[0].guid_SubCategoryId,
-      guid_SubSubCategoryId: category[0].guid_SubSubCategoryId,
+      guid_CategoryId: category[0].guidCategoryId,
+      guid_SubCategoryId: category[0].guidSubCategoryId,
+      guid_SubSubCategoryId: category[0].guidSubSubCategoryId,
+      guid_BusinesscategoryId:localStorage.businesscategoryid,
+      guid_VendorId: localStorage.userid,
       categoryName: category[0].categoryName,
       description: category[0].description,
       // categoryImg:category[0].categoryImg,
-      isPreorder: category[0].isPreorder
+      isPreorder: category[0].isPreOrder
     });
     this.mode = 'edit';
   }

@@ -99,6 +99,11 @@
                         </a>
                      </li>
                      <li class=" " *ngIf="appservice.isUser()">
+                        <a routerLink="unit/unitlist" title="Buttons">
+                           <span data-localize="sidebar.nav.element.BUTTON">UnitList</span>
+                        </a>
+                     </li>
+                     <li class=" " *ngIf="appservice.isUser()">
                         <a routerLink="wholeseller/wholesellerlist" title="Buttons">
                            <span data-localize="sidebar.nav.element.BUTTON">Wholeseller List</span>
                         </a>

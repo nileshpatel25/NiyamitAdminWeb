@@ -6,7 +6,7 @@ import { GallaryvideolistComponent } from '../gallaryvideolist/gallaryvideolist.
 import { GallaryvideosearchfilterPipe } from 'src/app/Services/Pipe/gallaryvideosearchfilter.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { AngularEditorModule } from '@kolkov/angular-editor';
 @NgModule({
   declarations: [
     GallaryvideolistComponent,
@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     GallaryvideoRoutingModule,
+    AngularEditorModule,
     NgxPaginationModule
   ]
 })

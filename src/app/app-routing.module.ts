@@ -19,6 +19,10 @@ const routes: Routes = [
           .then(mode => mode.BrandModule)
       },      
       {
+        path: 'unit', loadChildren: () => import('./Views/Unit/unit/unit.module')
+          .then(mode => mode.UnitModule)
+      },
+      {
         path: 'vendor',component:VendorComponent
       },
       {

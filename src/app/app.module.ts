@@ -15,6 +15,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { VendorComponent } from './Views/Vendor/vendor/vendor.component';
 
+
 //import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
