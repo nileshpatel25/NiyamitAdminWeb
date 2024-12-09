@@ -7,13 +7,13 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import {NgxPaginationModule} from 'ngx-pagination';
 import { UnitlistComponent } from '../unitlist/unitlist.component';
-import { SearchFilterPipe } from 'src/app/Services/Pipe/search-filter.pipe';
+import { UnitsearchfilterPipe } from 'src/app/Services/Pipe/unitsearchfilter.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     UnitlistComponent,
-    SearchFilterPipe
+    UnitsearchfilterPipe
   ],
   imports: [
     CommonModule, 

@@ -1,5 +1,5 @@
 <div class="content-wrapper">
-    <h3>Category
+    <h3>Add New Store
     </h3>
     <div class="container-fluid">
         <div class="row">
@@ -9,12 +9,15 @@
                         
                         <div class="panel-body">
                             <div class="col-sm-12">
+                                <b>  Store information</b><hr/>
+                            </div>
+                            <div class="col-sm-12">
                                 <!-- Name -->
                                 <div class="col-sm-4">
                                     <div class="form-group" style="margin-left: 5px;">
                                         <label for="name">Name</label>
                                         <input id="name" class="form-control" type="text" formControlName="name"
-                                            placeholder="Enter Name">
+                                            placeholder="enter store Name">
                                         <p>
                                             <span class="text-danger"
                                                 *ngIf="!vform.get('name')?.value && formSubmitted">
@@ -23,22 +26,8 @@
                                         </p>
                                     </div>
                                 </div>
-                                <!-- Address -->
-                                <div class="col-sm-4">
-                                    <div class="form-group" style="margin-left: 5px;">
-                                        <label for="address">Address</label>
-                                        <input id="address" class="form-control" type="text" formControlName="address"
-                                            placeholder="Enter Address">
-                                        <p>
-                                            <span class="text-danger"
-                                                *ngIf="!vform.get('address')?.value && formSubmitted">
-                                                Address is required.
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- Email -->
-                                <div class="col-sm-4">
+                                 <!-- Email -->
+                                 <div class="col-sm-4">
                                     <div class="form-group" style="margin-left: 5px;">
                                         <label for="email">Email</label>
                                         <input id="email" class="form-control" type="email" formControlName="email"
@@ -65,11 +54,35 @@
                                         </p>
                                     </div>
                                 </div>
+                                <!-- Address -->
+                                <div class="col-sm-4">
+                                    <div class="form-group" style="margin-left: 5px;">
+                                        <label for="address">Address</label>
+                                        <input id="address" class="form-control" type="text" formControlName="address"
+                                            placeholder="Enter Address">
+                                        <p>
+                                            <span class="text-danger"
+                                                *ngIf="!vform.get('address')?.value && formSubmitted">
+                                                Address is required.
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-sm-12">
+                                <b> Store information</b><hr/>
+                            </div>
+                            <div class="col-sm-12">
+                               
                                 <!-- City Name -->
                                 <div class="col-sm-4">
                                     <div class="form-group" style="margin-left: 5px;">
                                         <label for="cityName">City Name</label>
-                                        <input id="cityName" class="form-control" type="text" formControlName="cityName"
+                                        <input id="autocomplate" class="form-control" type="text" formControlName="cityName"
                                             placeholder="Enter City Name">
                                         <p>
                                             <span class="text-danger"
@@ -93,139 +106,178 @@
                                         </p>
                                     </div>
                                 </div>
-                                <!-- First Name -->
-                                <div class="col-sm-4">
-                                    <div class="form-group" style="margin-left: 5px;">
-                                        <label for="firstname">First Name</label>
-                                        <input id="firstname" class="form-control" type="text"
-                                            formControlName="firstname" placeholder="Enter First Name">
-                                        <p>
-                                            <span class="text-danger"
-                                                *ngIf="!vform.get('firstname')?.value && formSubmitted">
-                                                First Name is required.
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- Last Name -->
-                                <div class="col-sm-4">
-                                    <div class="form-group" style="margin-left: 5px;">
-                                        <label for="lastname">Last Name</label>
-                                        <input id="lastname" class="form-control" type="text" formControlName="lastname"
-                                            placeholder="Enter Last Name">
-                                        <p>
-                                            <span class="text-danger"
-                                                *ngIf="!vform.get('lastname')?.value && formSubmitted">
-                                                Last Name is required.
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- Owner Email -->
-                                <div class="col-sm-4">
-                                    <div class="form-group" style="margin-left: 5px;">
-                                        <label for="ownerEmail">Owner Email</label>
-                                        <input id="ownerEmail" class="form-control" type="email"
-                                            formControlName="ownerEmail" placeholder="Owner Email">
-                                        <p>
-                                            <span class="text-danger"
-                                                *ngIf="!vform.get('ownerEmail')?.value && formSubmitted">
-                                                Owner Email is required.
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- Owner Phone -->
-                                <div class="col-sm-4">
-                                    <div class="form-group" style="margin-left: 5px;">
-                                        <label for="ownerPhone">Owner Phone</label>
-                                        <input id="ownerPhone" class="form-control" type="text"
-                                            formControlName="ownerPhone" placeholder="Owner Phone">
-                                        <p>
-                                            <span class="text-danger"
-                                                *ngIf="!vform.get('ownerPhone')?.value && formSubmitted">
-                                                Owner Phone is required.
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- Owner Address -->
-                                <div class="col-sm-4">
-                                    <div class="form-group" style="margin-left: 5px;">
-                                        <label for="ownerAddress">Owner Address</label>
-                                        <input id="ownerAddress" class="form-control" type="text"
-                                            formControlName="ownerAddress" placeholder="Owner Address">
-                                        <p>
-                                            <span class="text-danger"
-                                                *ngIf="!vform.get('ownerAddress')?.value && formSubmitted">
-                                                Owner Address is required.
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- Username -->
-                                <div class="col-sm-4">
-                                    <div class="form-group" style="margin-left: 5px;">
-                                        <label for="username">Username</label>
-                                        <input id="username" class="form-control" type="text" formControlName="username"
-                                            placeholder="Enter Username">
-                                        <p>
-                                            <span class="text-danger"
-                                                *ngIf="!vform.get('username')?.value && formSubmitted">
-                                                Username is required.
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- Password -->
-                                <div class="col-sm-4">
-                                    <div class="form-group" style="margin-left: 5px;">
-                                        <label for="password">Password</label>
-                                        <input id="password" class="form-control" type="password"
-                                            formControlName="password" placeholder="Enter Password">
-                                        <p>
-                                            <span class="text-danger"
-                                                *ngIf="!vform.get('password')?.value && formSubmitted">
-                                                Password is required.
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- Store Logo -->
-                                <div class="col-sm-4">
-                                    <div class="form-group" style="margin-left: 5px;">
-                                        <label for="storeLogo">Store Logo</label>
-                                        <input id="storeLogo" class="form-control" type="file"
-                                            formControlName="storeLogo" accept="image/*">
-                                        <p>
-                                            <span class="text-danger"
-                                                *ngIf="!vform.get('storeLogo')?.value && formSubmitted">
-                                                Store Logo is required.
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- Store Cover Image -->
-                                <div class="col-sm-4">
-                                    <div class="form-group" style="margin-left: 5px;">
-                                        <label for="storeCoverImage">Store Cover Image</label>
-                                        <input id="storeCoverImage" class="form-control" type="file"
-                                            formControlName="storeCoverImage" accept="image/*">
-                                        <p>
-                                            <span class="text-danger"
-                                                *ngIf="!vform.get('storeCoverImage')?.value && formSubmitted">
-                                                Store Cover Image is required.
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div>
+                              
                             </div>
                         </div>
-                    </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="col-sm-12">
+                                    <b>   Owner information</b><hr/>
+                                </div>
+                                <div class="col-sm-12">
+                                   
+                                   
+                                    <!-- First Name -->
+                                    <div class="col-sm-4">
+                                        <div class="form-group" style="margin-left: 5px;">
+                                            <label for="firstname">First Name</label>
+                                            <input id="firstname" class="form-control" type="text"
+                                                formControlName="firstname" placeholder="Enter First Name">
+                                            <p>
+                                                <span class="text-danger"
+                                                    *ngIf="!vform.get('firstname')?.value && formSubmitted">
+                                                    First Name is required.
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- Last Name -->
+                                    <div class="col-sm-4">
+                                        <div class="form-group" style="margin-left: 5px;">
+                                            <label for="lastname">Last Name</label>
+                                            <input id="lastname" class="form-control" type="text" formControlName="lastname"
+                                                placeholder="Enter Last Name">
+                                            <p>
+                                                <span class="text-danger"
+                                                    *ngIf="!vform.get('lastname')?.value && formSubmitted">
+                                                    Last Name is required.
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- Owner Email -->
+                                    <div class="col-sm-4">
+                                        <div class="form-group" style="margin-left: 5px;">
+                                            <label for="ownerEmail">Owner Email</label>
+                                            <input id="ownerEmail" class="form-control" type="email"
+                                                formControlName="ownerEmail" placeholder="Owner Email">
+                                            <p>
+                                                <span class="text-danger"
+                                                    *ngIf="!vform.get('ownerEmail')?.value && formSubmitted">
+                                                    Owner Email is required.
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- Owner Phone -->
+                                    <div class="col-sm-4">
+                                        <div class="form-group" style="margin-left: 5px;">
+                                            <label for="ownerPhone">Owner Phone</label>
+                                            <input id="ownerPhone" class="form-control" type="text"
+                                                formControlName="ownerPhone" placeholder="Owner Phone">
+                                            <p>
+                                                <span class="text-danger"
+                                                    *ngIf="!vform.get('ownerPhone')?.value && formSubmitted">
+                                                    Owner Phone is required.
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- Owner Address -->
+                                    <div class="col-sm-4">
+                                        <div class="form-group" style="margin-left: 5px;">
+                                            <label for="ownerAddress">Owner Address</label>
+                                            <input id="ownerAddress" class="form-control" type="text"
+                                                formControlName="ownerAddress" placeholder="Owner Address">
+                                            <p>
+                                                <span class="text-danger"
+                                                    *ngIf="!vform.get('ownerAddress')?.value && formSubmitted">
+                                                    Owner Address is required.
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                              
+                                </div>
+                            </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="col-sm-12">
+                                        <b>   Account information</b><hr/>
+                                    </div>
+                                    <div class="col-sm-12">
+                                       
+                                       
+                                      
+                                        <!-- Username -->
+                                        <div class="col-sm-4">
+                                            <div class="form-group" style="margin-left: 5px;">
+                                                <label for="username">Username</label>
+                                                <input id="username" class="form-control" type="text" formControlName="username"
+                                                    placeholder="Enter Username">
+                                                <p>
+                                                    <span class="text-danger"
+                                                        *ngIf="!vform.get('username')?.value && formSubmitted">
+                                                        Username is required.
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- Password -->
+                                        <div class="col-sm-4">
+                                            <div class="form-group" style="margin-left: 5px;">
+                                                <label for="password">Password</label>
+                                                <input id="password" class="form-control" type="password"
+                                                    formControlName="password" placeholder="Enter Password">
+                                                <p>
+                                                    <span class="text-danger"
+                                                        *ngIf="!vform.get('password')?.value && formSubmitted">
+                                                        Password is required.
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                      
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="col-sm-12">
+                                           <b> Store Logo & Covers<hr/></b>
+                                        </div>
+                                        <div class="col-sm-12">
+                                           
+                                           
+                                         
+                                            <!-- Store Logo -->
+                                            <div class="col-sm-4">
+                                                <div class="form-group" style="margin-left: 5px;">
+                                                    <label for="storeLogo">Store Logo</label>
+                                                    <input id="storeLogo" class="form-control" type="file"
+                                                        formControlName="storeLogo" accept="image/*">
+                                                    <p>
+                                                        <span class="text-danger"
+                                                            *ngIf="!vform.get('storeLogo')?.value && formSubmitted">
+                                                            Store Logo is required.
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <!-- Store Cover Image -->
+                                            <div class="col-sm-4">
+                                                <div class="form-group" style="margin-left: 5px;">
+                                                    <label for="storeCoverImage">Store Cover Image</label>
+                                                    <input id="storeCoverImage" class="form-control" type="file"
+                                                        formControlName="storeCoverImage" accept="image/*">
+                                                    <p>
+                                                        <span class="text-danger"
+                                                            *ngIf="!vform.get('storeCoverImage')?.value && formSubmitted">
+                                                            Store Cover Image is required.
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <button class="btn btn-primary" type="submit"
-                                style="width: 100px; margin-left: 40px;">Add</button>
+                                style="width: 100px; margin-left: 40px;">Submit</button>
                             <button class="btn btn-danger m-r-10 m-t-10" type="reset"
                                 style="width: 100px; margin-left: 10px;">Reset</button>
                         </div>

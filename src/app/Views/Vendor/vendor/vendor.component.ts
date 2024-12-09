@@ -11,6 +11,8 @@ import { ApiService } from 'src/app/Services/api.service';
 export class VendorComponent implements OnInit {
   vform!: FormGroup;
   formSubmitted: boolean = false;
+  location: { lat: number; lng: number } | null = null;
+  google: any;
   selectedFile: File | null = null;
   constructor(public fb: FormBuilder,
     public apiService: ApiService,
@@ -18,7 +20,7 @@ export class VendorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+   
     this.vform = this.fb.group({
       name: ['', Validators.required],
       address: ['', Validators.required],
@@ -36,7 +38,33 @@ export class VendorComponent implements OnInit {
       storeLogo: ['', Validators.required],
       storeCoverImage: ['', Validators.required]
     });
+    this.initializeAutocomplete();
   }
+
+
+  initializeAutocomplete(): void {
+    const input = document.getElementById('autocomplate') as HTMLInputElement;
+
+    // Initialize Google Maps Places Autocomplete
+    const autocomplete = new google.maps.places.Autocomplete(input);
+
+    // Listen for place selection
+    autocomplete.addListener('place_changed', () => {
+      const place = autocomplete.getPlace();
+
+      // Check if place has geometry
+      if (place.geometry && place.geometry.location) {
+        this.location = {
+          lat: place.geometry.location.lat(),
+          lng: place.geometry.location.lng(),
+        };
+        console.log('Selected Location:', this.location);
+      } else {
+        console.error('No details available for input: ' + input.value);
+      }
+    });
+  }
+
   addVendor() {
     this.formSubmitted = true;
     if (!this.vform.valid)

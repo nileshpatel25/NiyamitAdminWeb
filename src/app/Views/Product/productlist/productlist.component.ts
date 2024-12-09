@@ -29,7 +29,7 @@ export class ProductlistComponent implements OnInit {
 
   ngOnInit(): void {
    
-    this.appservice.checktoken();
+    //this.appservice.checktoken();
     this.getproductlist();
     this.eform=this.fb.group({
       guid_ProductId:[''],
@@ -40,7 +40,7 @@ export class ProductlistComponent implements OnInit {
   }
 
   getproductlist(){
-    this.apiservice.getapi('Product/GetAllProduct?Guid_VendorId='+localStorage.userid).subscribe(resp=>{
+    this.apiservice.getapi('Product/GetAllProduct?Guid_VendorId='+localStorage.userid+'&pageNo=6&pageSize=20').subscribe(resp=>{
       if(resp.status){
           this.productlist=resp.productDatas;
           this.filteredProductList = resp.productDatas
